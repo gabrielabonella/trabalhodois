@@ -14,20 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 2. Configuração do Node.js (caso o seu projeto utilize um framework JS como React, Angular, etc.)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # Altere para a versão de Node.js que você está utilizando
-
-      # 3. Instalação de dependências (caso você utilize npm/yarn)
-      - name: Install dependencies
-        run: npm install  # ou yarn install caso esteja usando Yarn
-
-      # 4. Construção do projeto (somente se necessário, como no caso de um projeto com React ou similar)
-      - name: Build the project
-        run: npm run build  # ou yarn build
-
       # 5. Atualização do arquivo index.html (se você precisar alterar algo no arquivo antes do deploy)
       - name: Update index.html
         run: |
@@ -48,7 +34,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_API_TOKEN }}
           app_location: '/'  # Altere conforme a localização do seu código
-          api_location: 'api'  # Remova caso não utilize uma API
           output_location: 'build'  # Pasta com o conteúdo final para deploy, normalmente 'build' ou 'dist'
       
 
