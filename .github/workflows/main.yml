@@ -2,11 +2,11 @@ name: Workflow para o branch main
 
 on:
   schedule:
-    - cron: '0 21 * * *'  # Gatilho para rodar todo dia às 21:00 UTC
+    - cron: '0 21 * * *'  
   push:
     branches:
-      - main  # Rodar também no push para a branch main
-
+      - main  
+      
       jobs:
   # Job 1: Processo de build e deploy para o Azure Static Web App
   deploy:
@@ -17,7 +17,7 @@ on:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 5. Atualização do arquivo index.html (se você precisar alterar algo no arquivo antes do deploy)
+      # 5. Atualização do arquivo index.html
       - name: Update index.html
         run: |
           sed -i 's/old-text/new-text/g' path/to/index.html  # Exemplo de alteração no arquivo
