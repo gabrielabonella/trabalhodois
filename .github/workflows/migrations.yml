@@ -1,0 +1,31 @@
+name: Run Migrations on Supabase
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  run-migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PostgreSQL
+        uses: psql/psql-action@v1.0.0
+        with:
+          connection-string: ${{ secrets.DATABASE_URL_DEV }}
+          query: |
+           echo "Running migrations for develop environment"
+            psql ${{ secrets.DATABASE_URL_DEV }} -f migrations/develop.sql
+
+      - name: Run migrations for main branch
+        if: github.ref == 'refs/heads/main'
+        uses: psql/psql-action@v1.0.0
+        with:
+          connection-string: ${{ secrets.DATABASE_URL_MAIN }}
+          query: |
+            echo "Running migrations for main environment"
+            psql ${{ secrets.DATABASE_URL_MAIN }} -f migrations/main.sql
