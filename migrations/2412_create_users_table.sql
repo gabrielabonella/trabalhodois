@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+IF NOT EXISTS (SELECT 1 FROM migrations WHERE migration_name = '2412_create_users_table')
+BEGIN
+    INSERT INTO migrations (migration_name) VALUES ('2412_create_users_table');
+END
 
-INSERT INTO migrations (migration_name)
-VALUES ('2412_create_users_table');
