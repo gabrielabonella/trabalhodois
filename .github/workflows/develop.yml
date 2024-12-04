@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - develop  # Executa o workflow para PRs feitos para a branch 'develop'
+
 jobs:
-  # Job 1: Processo de build e deploy para o Azure Static Web App
   deploy:
     runs-on: ubuntu-latest
 
@@ -36,7 +36,11 @@ jobs:
           app_location: '/'  # Altere conforme a localização do seu código
           output_location: 'build'  # Pasta com o conteúdo final para deploy, normalmente 'build' ou 'dist'
       
-
-#Incluir aqui:
-#-	Executar migrações de banco de dados no Supabase.
-#DATABASE_URL_DEV=postgresql://postgres.njwinexjugwoaztjfyts:[GABgab@#1234]@aws-0-sa-east-1.pooler.supabase.com:6543/postgres
+      # 8. Rodar as migrações no banco de dados Supabase (para o ambiente 'develop')
+      - name: Run database migrations on Supabase
+        env:
+          DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL_DEVELOP }}
+        run: |
+          echo "Rodando migrações para o banco de dados Supabase..."
+          # Aqui usamos psql para rodar as migrações
+          psql $DATABASE_URL -f migrations/develop.sql
