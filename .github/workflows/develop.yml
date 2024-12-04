@@ -1,0 +1,10 @@
+name: Workflow para Pull Request para develop
+
+on:
+  pull_request:
+    branches:
+      - develop  # Executa o workflow para PRs feitos para a branch 'develop'
+
+#Incluir aqui:
+#-	Atualizar o arquivo index.html (deploy no Azure Static Web Apps).
+#-	Executar migrações de banco de dados no Supabase.
