@@ -15,15 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Instalar dependências (caso necessário)
-      - name: Install dependencies
-        run: npm install  # ou outro comando, dependendo do seu projeto
-
-      # Construir o projeto (caso necessário)
-      - name: Build project
-        run: npm run build  # ou outro comando de build
-
-#     #Login no Azure usando as credenciais armazenadas nos secrets
+   #Login no Azure usando as credenciais armazenadas nos secrets
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -38,7 +30,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_API_TOKEN }}
           app_location: '/'
-          api_location: 'api'  # Caso você tenha uma API (remova se não tiver)
           output_location: 'build'  # Ou o diretório que contém os arquivos prontos para o deploy
 
         # Condicional de deploy com base no branch
