@@ -39,3 +39,4 @@ jobs:
 
 #Incluir aqui:
 #-	Executar migrações de banco de dados no Supabase.
+#DATABASE_URL_DEV=postgresql://postgres.njwinexjugwoaztjfyts:[GABgab@#1234]@aws-0-sa-east-1.pooler.supabase.com:6543/postgres
