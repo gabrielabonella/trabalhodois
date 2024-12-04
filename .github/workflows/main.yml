@@ -1,0 +1,8 @@
+name: Workflow para o branch main
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # Gatilho para rodar todo dia às 21:00 UTC
+  push:
+    branches:
+      - main  # Rodar também no push para a branch main
