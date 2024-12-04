@@ -2,13 +2,12 @@ name: Workflow para o branch main
 
 on:
   schedule:
-    - cron: '0 21 * * *'  
+    - cron: '0 21 * * *'  # Rodar todos os dias às 21:00 (UTC)
   push:
     branches:
-      - main  
-      
-      jobs:
-  # Job 1: Processo de build e deploy para o Azure Static Web App
+      - main  # Executa o workflow para qualquer push para a branch 'main'
+
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
@@ -36,10 +35,14 @@ on:
         uses: azure/static-web-apps-deploy@v0
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_API_TOKEN }}
-          app_location: '/' 
-          output_location: 'build'  
-      
+          app_location: '/'  # Altere conforme a localização do seu código
+          output_location: 'build'  # Pasta com o conteúdo final para deploy, normalmente 'build' ou 'dist'
 
-#Incluir aqui:
-#-	Executar migrações de banco de dados no Supabase.
-#DATABASE_URL_MAIN=postgresql://postgres.liawpddqmfmjtdrioofs:[GABgab@#1234]@aws-0-sa-east-1.pooler.supabase.com:6543/postgres
+      # 8. Rodar as migrações no banco de dados Supabase (para o ambiente 'main')
+      - name: Run database migrations on Supabase for main
+        env:
+          DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL_MAIN }}  # Usando o secret do banco de dados
+        run: |
+          echo "Rodando migrações para o banco de dados Supabase (produção)..."
+          # Usamos psql para rodar as migrações no banco de dados de produção
+          psql $DATABASE_URL -f migrations/main.sql
