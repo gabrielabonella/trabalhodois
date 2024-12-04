@@ -30,7 +30,7 @@ jobs:
       # 7. Deploy no Azure Static Web Apps
       - name: Deploy to Azure Static Web App
         id: azure-static-web-app-deploy
-        uses: azure/static-web-apps-deploy@v0
+        uses: azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_API_TOKEN }}
           app_location: '/'  # Altere conforme a localização do seu código
