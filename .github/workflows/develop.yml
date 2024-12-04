@@ -3,23 +3,23 @@ name: Workflow para Pull Request para develop
 on:
   pull_request:
     branches:
-      - develop  # Executa o workflow para PRs feitos para a branch 'develop'
+      - develop  
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do código do repositório
+    
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # 5. Atualização do arquivo index.html (se você precisar alterar algo no arquivo antes do deploy)
+     
       - name: Update index.html
         run: |
-          sed -i 's/old-text/new-text/g' path/to/index.html  # Exemplo de alteração no arquivo
+          
 
-      # 6. Login no Azure utilizando as credenciais armazenadas no GitHub Secrets
+    
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -27,7 +27,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
 
-      # 7. Deploy no Azure Static Web Apps
+   
       - name: Deploy to Azure Static Web App
         id: azure-static-web-app-deploy
         uses: azure/static-web-apps-deploy@v1
@@ -36,11 +36,9 @@ jobs:
           app_location: '/'  # Altere conforme a localização do seu código
           output_location: 'build'  # Pasta com o conteúdo final para deploy, normalmente 'build' ou 'dist'
       
-      # 8. Rodar as migrações no banco de dados Supabase (para o ambiente 'develop')
+   
       - name: Run database migrations on Supabase
         env:
           DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL_DEVELOP }}
         run: |
-          echo "Rodando migrações para o banco de dados Supabase..."
-          # Aqui usamos psql para rodar as migrações
-          psql $DATABASE_URL -f migrations/develop.sql
+          
