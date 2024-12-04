@@ -16,7 +16,7 @@ jobs:
       - name: Set up PostgreSQL
         uses: psql/psql-action@v1.0.0
         with:
-          connection-string: ${{ secrets.DATABASE_URL_DEV }}
+          connection-string: ${{ secrets.DATABASE_URL_DEVELOP }}
           query: |
            echo "Running migrations for develop environment"
             psql ${{ secrets.DATABASE_URL_DEV }} -f migrations/develop.sql
