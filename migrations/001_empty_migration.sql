@@ -1,1 +1,6 @@
--- Essa migração não realiza alterações no banco de dados.
+CREATE TABLE IF NOT EXISTS userss (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
