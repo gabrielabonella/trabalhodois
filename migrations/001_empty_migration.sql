@@ -1,0 +1,1 @@
+-- Essa migração não realiza alterações no banco de dados.
