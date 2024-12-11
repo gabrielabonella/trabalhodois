@@ -28,4 +28,4 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}  # Permite a ação de fazer o deploy
           action: "upload"
           app-location: "/"  # Localização do seu app no repositório
-          api-location: "api"  # Se você tiver uma API, caso contrário deixe vazio
+          api-location: ""  # Se você tiver uma API, caso contrário deixe vazio
