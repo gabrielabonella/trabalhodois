@@ -22,7 +22,7 @@ jobs:
 
       # Passo 3: Deploy do código para o ambiente de produção
       - name: Deploy to Azure Static Web App
-        uses: azure/static-web-apps-deploy-action@v1
+        uses: static-web-apps-deploy-action@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}  # Permite a ação de fazer o deploy
           action: "upload"
