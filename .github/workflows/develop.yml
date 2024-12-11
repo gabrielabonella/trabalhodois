@@ -29,3 +29,4 @@ jobs:
           action: "upload"
           app-location: "/"  # Localização do seu app no repositório
           api-location: ""  # Se você tiver uma API, caso contrário deixe vazio
+          output_location: "/build"
